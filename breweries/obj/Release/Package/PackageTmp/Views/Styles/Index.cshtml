@@ -1,0 +1,94 @@
+﻿@model IEnumerable<breweries.Models.Style>
+
+@{
+    ViewBag.Title = "Styles";
+}
+<div class="editHead">
+    <h4 class="edit-name">Styles</h4>
+</div>
+
+<p class="create">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Style")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Colour)
+        </th>
+        <th class="spec-col-left">
+            @Html.DisplayName("ABV")
+        </th>
+        <th class="spec-col">
+            @Html.DisplayName("Range")
+        </th>
+        <th>
+            @Html.DisplayName("Style guide")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country.Region)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Style1)
+        </td>
+        <td>
+            @if(item.Colour != null)
+            {
+                @Html.DisplayFor(modelItem => item.Colour);
+
+            }
+            else
+            {
+                @Html.DisplayName("Null");
+            }
+        </td>
+        <td class="spec-col-left">
+            @if (item.  lowABV != null)
+            {
+                @Html.DisplayFor(modelItem => item.lowABV);
+            }
+            else
+            {
+                @Html.DisplayName("Null");
+            }
+        </td>
+        <td class="spec-col">
+            @if (item.highABV != null)
+            {
+                @Html.DisplayFor(modelItem => item.highABV);
+            }
+            else
+            {
+                @Html.DisplayName("Null");
+            }
+        </td>
+        <td>
+            @if (item.styleWiki != null)
+            {
+                <a href="http://@Url.Content(item.styleWiki)" target="_blank" class="website">@Html.DisplayFor(modelItem => item.styleWiki)</a>
+            }
+            else
+            {
+                @Html.DisplayName("Null");
+            }
+        </td>
+        <td class="det-name">
+            @Html.ActionLink(item.Country.Region, "Details", "Styles", new { id = item.Country.Id }, null)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "table-links fa fa-edit" })
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "table-links fa fa-info" })
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "table-links fa fa-trash" })
+        </td>
+    </tr>
+}
+
+</table>

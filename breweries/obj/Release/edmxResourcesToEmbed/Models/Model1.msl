@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="breweriesModelStoreContainer" CdmEntityContainer="breweriesEntities6">
+    <EntitySetMapping Name="beers">
+      <EntityTypeMapping TypeName="breweriesModel.beer">
+        <MappingFragment StoreEntitySet="beer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StyleId" ColumnName="StyleId" />
+          <ScalarProperty Name="BreweryId" ColumnName="BreweryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Strength" ColumnName="Strength" />
+          <ScalarProperty Name="Can" ColumnName="Can" />
+          <ScalarProperty Name="Bottle" ColumnName="Bottle" />
+          <ScalarProperty Name="Keg" ColumnName="Keg" />
+          <ScalarProperty Name="Badge" ColumnName="Badge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Breweries">
+      <EntityTypeMapping TypeName="breweriesModel.Brewery">
+        <MappingFragment StoreEntitySet="Brewery">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="breweriesModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="RegionBrewWiki" ColumnName="RegionBrewWiki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Styles">
+      <EntityTypeMapping TypeName="breweriesModel.Style">
+        <MappingFragment StoreEntitySet="Style">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Style1" ColumnName="Style" />
+          <ScalarProperty Name="Colour" ColumnName="Colour" />
+          <ScalarProperty Name="lowABV" ColumnName="lowABV" />
+          <ScalarProperty Name="highABV" ColumnName="highABV" />
+          <ScalarProperty Name="styleWiki" ColumnName="styleWiki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

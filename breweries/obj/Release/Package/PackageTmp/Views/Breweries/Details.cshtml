@@ -1,0 +1,135 @@
+﻿@model breweries.Models.Brewery
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="editHead">
+    <h4 class="edit-name">Details - <span id="brewname">@Html.DisplayFor(model => model.Name)</span> - <span id="postcode">@Html.DisplayFor(model => model.Location)</span></h4>
+</div>
+<div class="beer-det-brew">
+    <a href="http://@Html.Raw(Model.Website)" target="_blank" class="website det-name det-website">  @Html.DisplayFor(model => model.Website)</a>
+</div>
+<hr />
+<div class="head-cont">
+    <div id="map-single"></div>
+    <img class="mainLogo" src="@Html.Raw(Model.Logo)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+</div>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            Beer name
+        </th>
+        <th>
+            Style
+        </th>
+        <th>
+            Strength
+        </th>
+        <th>
+            Badge
+        </th>
+        <th>
+            Can
+        </th>
+        <th>
+            Bottle
+        </th>
+        <th>
+            Keg
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.beers)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="det-name">
+            @Html.ActionLink(item.Style.Style1, "Details", "Styles", new { id = item.Style.Id }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Strength)
+        </td>
+        <td>
+            <img class="badgeLogo badge-logo-details" src="@Html.Raw(item.Badge)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+        </td>
+        <td>
+            <label class="check-cont">
+                @Html.DisplayFor(modelItem => item.Can)
+                <span class="checkmark"></span>
+            </label>
+        </td>
+        <td>
+            <label class="check-cont">
+                @Html.DisplayFor(modelItem => item.Bottle)
+                <span class="checkmark"></span>
+            </label>
+        </td>
+        <td>
+            <label class="check-cont">
+                @Html.DisplayFor(modelItem => item.Keg)
+                <span class="checkmark"></span>
+            </label>
+        </td>
+        <td class="table-links">
+            @Html.ActionLink(" ", "../beers/Edit", new { id = item.Id }, new { @class = "table-links fa fa-edit" })
+            @Html.ActionLink(" ", "../beers/Details", new { id = item.Id }, new { @class = "table-links fa fa-info" })
+            @Html.ActionLink(" ", "../beers/Delete", new { id = item.Id }, new { @class = "table-links fa fa-trash" })
+        </td>
+    </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script>
+    var locations = [];
+    var locationArray = [];
+    var map;
+    var names = [];
+    var marker;
+    var name;
+    var x = 0;
+
+    function initMap() {
+        var geocoder = new google.maps.Geocoder();
+        var postcode = document.getElementById('postcode').textContent;
+        var name = document.getElementById('brewname').textContent;
+        postcode.toString();
+
+        map = new google.maps.Map(document.getElementById('map-single'), {
+            zoom: 11,
+            minZoom: 10,
+            maxZoom: 15,
+            mapTypeControl: true,
+            mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU },
+            navigationControl: true,
+            center: { lat: 51.5001407, lng: -0.0985984 }
+        });
+        map.addListener('tilesloaded', function () {
+            geocodeAddress(geocoder, map);
+        })
+        function geocodeAddress(geocoder, resultsMap) {
+            console.log(postcode);
+            geocoder.geocode({ 'address': postcode }, function (results, status) {
+                if (status === 'OK') {
+                    marker = new google.maps.Marker({
+                        map: resultsMap,
+                        title: name,
+                        position: results[0].geometry.location
+                    });
+
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+                map.panTo(marker.position);
+            });
+        }
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp8RI_Ql4O4QWkJj03_nyE-CEm8Z_1rfY&libraries=places&callback=initMap" async defer></script>

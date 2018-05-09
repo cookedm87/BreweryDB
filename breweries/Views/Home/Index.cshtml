@@ -1,0 +1,79 @@
+﻿@model IEnumerable<breweries.Models.Brewery>
+@{
+    ViewBag.Title = "Index";
+}
+<section div id="homeIndex">
+    <h2 class="mainHead">Welcome to the London Brewery Database</h2>
+    <h3 class="subHead">Click on a marker to view a brewery!</h3>
+    <div id="map"></div>
+</section>
+<script>
+    var locations = [];
+    var lat = [];
+    var lon = [];
+    var map;
+    var locationArray = [];
+    var names = [];
+    var marker;
+    var name;
+    var x = 0;
+    var locationId = [];
+    var markers = [];
+
+    function initMap() {
+        //var geocoder = new google.maps.Geocoder();
+        $.getJSON("/Home/GetBrewery", function (data) {
+            obj = JSON.parse(data);
+            console.log(JSON.stringify(obj));
+            for (var i = 0; i < obj.length; i++) {
+                lat.push(obj[i].lat);
+                lon.push(obj[i].lon);
+                names.push(obj[i].Name);
+                locationId.push(obj[i].Id);
+            }
+            console.log(locationId);
+        })
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            minZoom: 10,
+            maxZoom: 15,
+            mapTypeControl: true,
+            mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU },
+            navigationControl: true,
+            center: { lat: 51.5001407, lng: -0.0985984 }
+        });
+
+        map.addListener('tilesloaded', function () {
+            geocodeAddress(map);
+        })
+
+        var bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(51.3052688, -0.5191183),
+            new google.maps.LatLng(51.636546, 0.2936668));
+        map.addListener('dragend', function () {
+            if (bounds.contains(map.center)) {
+                return;
+            }
+            else {
+                map.setCenter(new google.maps.LatLng(51.5001407, -0.0985984))
+            }
+        });
+    }
+
+    function geocodeAddress(resultsMap) {
+        for (i = 0; i < lon.length; i++) {
+            var tooltiphover = names[i];
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat[i], lon[i]),
+                title: names[i],
+                url: '@Url.Action("Details", "Breweries")' + '/' + locationId[i],            
+                map: map    
+            });
+
+            marker.addListener('click', function () {
+                window.location.href = this.url;
+            })
+        }
+    }
+</script>

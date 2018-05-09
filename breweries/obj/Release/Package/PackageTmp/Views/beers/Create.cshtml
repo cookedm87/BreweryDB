@@ -1,0 +1,100 @@
+﻿@model breweries.Models.beer
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create new beer</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.StyleId, "Style", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("StyleId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StyleId, "", new { @class = "text-danger" })
+            </div>
+            <button class="newStyle">@Html.ActionLink("Add new style", "Create", "Styles")</button>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BreweryId, "Brewery", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("BreweryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BreweryId, "", new { @class = "text-danger" })
+            </div>
+            <button class="newStyle">@Html.ActionLink("Add new brewery", "Create", "Breweries")</button>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Strength, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Strength, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Strength, "", new { @class = "text-danger" })
+            </div>
+            <p class="strength">%</p>
+        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Can, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Can)
+                        @Html.ValidationMessageFor(model => model.Can, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Bottle, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Bottle)
+                        @Html.ValidationMessageFor(model => model.Bottle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Keg, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Keg)
+                        @Html.ValidationMessageFor(model => model.Keg, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.Badge, "Badge (Image URL)", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Badge, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Badge, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

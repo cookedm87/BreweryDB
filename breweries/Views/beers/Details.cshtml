@@ -1,0 +1,71 @@
+﻿@model breweries.Models.beer
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="editHead">
+    <h4 class="edit-name">Details - @Html.DisplayFor(model => model.Name)</h4>
+</div>
+<div class="beer-det-brew">
+    <h4 class="det-name">@Html.ActionLink(Model.Brewery.Name,"Details","Breweries", new { id = Model.Brewery.Id }, null)</h4>
+</div>
+<div class="col-md-12">
+    <hr />
+    <div class="head-cont">
+        <img class="mainLogo" src="@Html.Raw(Model.Brewery.Logo)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+        <img class="mainLogo" src="@Html.Raw(Model.Badge)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+    </div>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                Style
+            </th>
+            <th>
+                Strength
+            </th>
+            <th>
+                Can
+            </th>
+            <th>
+                Bottle
+            </th>
+            <th>
+                Keg
+            </th>
+        </tr>
+        <tr>
+            <td class="det-name">
+                @Html.ActionLink(Model.Style.Style1, "Details", "Styles", new { id = Model.Style.Id }, null)
+            </td>
+            <td>
+                
+                    @Html.DisplayFor(model => model.Strength)
+            </td>
+            <td>
+                <label class="check-cont">
+                    @Html.DisplayFor(model => model.Can)
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td>
+                <label class="check-cont">
+                    @Html.DisplayFor(model => model.Bottle)
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td>
+                <label class="check-cont">
+                    @Html.DisplayFor(model => model.Keg)
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+        </tr>  
+    </table>
+    </div>
+    <hr/>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

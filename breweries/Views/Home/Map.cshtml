@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Map";
+}
+
+<h2>Map</h2>
+<div id="map_canvas" class="map"></div>
+<div id="map" class="map"></div>
+<script type="text/javascript">
+    var mapPoints = [];
+
+    $.getJSON("/Map/GetBrewery", function (data) {
+        obj = JSON.parse(data);
+        debugger
+        for (var i = 0; i < obj.length; i++) {
+            debugger
+            mapPoints.push({ Name: obj[i].Name, Postcode: obj[i].Location });
+        }
+        $(document).ready(function () {
+            var map;
+            var elevator;
+            var myOptions = {
+                zoom: 1,
+                center: new google.maps.LatLng(0, 0),
+                mapTypeId: 'terrain'
+            };
+            map = new google.maps.Map($('#map_canvas')[0], myOptions);
+
+            for (var x = 0; x < mapPoints.length; x++) {
+                $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + mapPoints[x.Postcode] + '&sensor=false', null, function (data) {
+                    var p = data.results[0].geometry.location
+                    var latlng = new google.maps.LatLng(p.lat, p.lng);
+                    new google.maps.Marker({
+                        position: latlng,
+                        map: map
+                    });
+
+                });
+            }
+
+        });
+    })
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp8RI_Ql4O4QWkJj03_nyE-CEm8Z_1rfY&callback=initMap"
+        async defer></script>

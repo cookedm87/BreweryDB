@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - London Brewery Database</title>
+    <link href="http://dancookecode.co.uk/img/6310ad2b-aea2-4d41-bf17-b325c6ab1587.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body id="shared-style">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("London Brewery Database", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @Html.ActionLink("Regions", "Index", "Countries", new { area = "" }, new { @class = "navbar-text navbar-collapse collapse nav-link" })
+                    @Html.ActionLink("Styles", "Index", "Styles", new { area = "" }, new { @class = "navbar-text navbar-collapse collapse nav-link" })
+                    @Html.ActionLink("Beers", "Index", "beers", new { area = "" }, new { @class = "navbar-text navbar-collapse collapse nav-link" })
+                    @Html.ActionLink("Breweries", "Index", "Breweries", new { area = "" }, new { @class = "navbar-text navbar-collapse collapse nav-link" })
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Daniel Cooke</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp8RI_Ql4O4QWkJj03_nyE-CEm8Z_1rfY&libraries=places&callback=initMap" async></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<breweries.Models.Brewery>
+
+@{
+    ViewBag.Title = "Breweries";
+}
+
+<div class="editHead">
+    <h4 class="edit-name">Breweries</h4>
+</div>
+
+<p class="create">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Website)
+        </th>
+        <th class="badgeLogoTitle">
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            <a href="http://@Html.Raw(item.Website)" target="_blank" class="website">@Html.DisplayFor(modelItem => item.Website)</a>
+        </td>
+        <td>
+            <img class="badgeLogo" src="@Html.Raw(item.Logo)" alt="Logo" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'"/>
+        </td>
+        <td class="table-links">
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "table-links fa fa-edit" })
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "table-links fa fa-info" })
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "table-links fa fa-trash" })
+        </td>
+    </tr>
+}
+
+</table>

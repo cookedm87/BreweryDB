@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="breweriesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="beer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StyleId" Type="Int32" Nullable="false" />
+    <Property Name="BreweryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Strength" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="Can" Type="Boolean" Nullable="false" />
+    <Property Name="Bottle" Type="Boolean" Nullable="false" />
+    <Property Name="Keg" Type="Boolean" Nullable="false" />
+    <Property Name="Badge" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Brewery" Relationship="Self.FK_beer_Brewery" FromRole="beer" ToRole="Brewery" />
+    <NavigationProperty Name="Style" Relationship="Self.FK_beer_Style" FromRole="beer" ToRole="Style" />
+  </EntityType>
+  <EntityType Name="Brewery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="lat" Type="Decimal" Precision="9" Scale="7" />
+    <Property Name="lon" Type="Decimal" Precision="9" Scale="7" />
+    <NavigationProperty Name="beers" Relationship="Self.FK_beer_Brewery" FromRole="Brewery" ToRole="beer" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Region" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegionBrewWiki" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Styles" Relationship="Self.FK_Style_Country" FromRole="Country" ToRole="Style" />
+  </EntityType>
+  <EntityType Name="Style">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="Style1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Colour" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="lowABV" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="highABV" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="styleWiki" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="beers" Relationship="Self.FK_beer_Style" FromRole="Style" ToRole="beer" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Style_Country" FromRole="Style" ToRole="Country" />
+  </EntityType>
+  <Association Name="FK_beer_Brewery">
+    <End Role="Brewery" Type="Self.Brewery" Multiplicity="1" />
+    <End Role="beer" Type="Self.beer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brewery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="beer">
+        <PropertyRef Name="BreweryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_beer_Style">
+    <End Role="Style" Type="Self.Style" Multiplicity="1" />
+    <End Role="beer" Type="Self.beer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Style">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="beer">
+        <PropertyRef Name="StyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Style_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Style" Type="Self.Style" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Style">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="breweriesEntities6" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="beers" EntityType="Self.beer" />
+    <EntitySet Name="Breweries" EntityType="Self.Brewery" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Styles" EntityType="Self.Style" />
+    <AssociationSet Name="FK_beer_Brewery" Association="Self.FK_beer_Brewery">
+      <End Role="Brewery" EntitySet="Breweries" />
+      <End Role="beer" EntitySet="beers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_beer_Style" Association="Self.FK_beer_Style">
+      <End Role="Style" EntitySet="Styles" />
+      <End Role="beer" EntitySet="beers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Style_Country" Association="Self.FK_Style_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Style" EntitySet="Styles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

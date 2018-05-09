@@ -1,0 +1,120 @@
+﻿@model breweries.Models.Style
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="editHead">
+    <h4 class="edit-name">Details - @Html.DisplayFor(model => model.Style1)</h4>
+</div>
+
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Colour)
+        </th>
+        <th>
+            @Html.DisplayName("Low end of ABV range")
+        </th>
+        <th>
+            @Html.DisplayName("High end of ABV range")
+        </th>
+        <th>
+            @Html.DisplayName("Style Wiki")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country.Region)
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Colour)
+        </td>
+        <td>
+
+            @Html.DisplayFor(model => model.lowABV)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.highABV)
+        </td>
+        <td>
+            <a href="http://@Html.Raw(Model.styleWiki)" target="_blank" class="website">  @Html.DisplayFor(model => model.styleWiki)</a>
+        </td>
+        <td class="det-name">
+            @Html.ActionLink(Model.Country.Region, "Details", "Countries", new { id = Model.Country.Id }, null)
+        </td>
+    </tr>
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Beer name
+        </th>
+        <th>
+            Brewery
+        </th>
+        <th>
+            Strength
+        </th>
+        <th>
+            Badge
+        </th>
+        <th>
+            Can
+        </th>
+        <th>
+            Bottle
+        </th>
+        <th>
+            Keg
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.beers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="det-name">
+                @Html.ActionLink(item.Brewery.Name, "Details", "Breweries", new { id = item.Brewery.Id }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Strength)
+            </td>
+            <td>
+                <img class="badgeLogo badge-logo-details" src="@Html.Raw(item.Badge)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+            </td>
+            <td>
+                <label class="check-cont">
+                    @Html.DisplayFor(modelItem => item.Can)
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td>
+                <label class="check-cont">
+                    @Html.DisplayFor(modelItem => item.Bottle)
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td>
+                <label class="check-cont">
+                    @Html.DisplayFor(modelItem => item.Keg)
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td class="table-links">
+                @Html.ActionLink(" ", "../beers/Edit", new { id = item.Id }, new { @class = "table-links fa fa-edit" })
+                @Html.ActionLink(" ", "../beers/Details", new { id = item.Id }, new { @class = "table-links fa fa-info" })
+                @Html.ActionLink(" ", "../beers/Delete", new { id = item.Id }, new { @class = "table-links fa fa-trash" })
+            </td>
+        </tr>
+    }
+
+</table>

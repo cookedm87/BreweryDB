@@ -1,0 +1,56 @@
+C:\Users\Cooke\source\repos\breweries\breweries\bin\breweries.dll.config
+C:\Users\Cooke\source\repos\breweries\breweries\bin\breweries.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\breweries.pdb
+C:\Users\Cooke\source\repos\breweries\breweries\bin\EntityFramework.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\EntityFramework.SqlServer.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\Newtonsoft.Json.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Helpers.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Mvc.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Razor.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Webpages.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Webpages.Razor.dll
+C:\Users\Cooke\source\repos\breweries\breweries\bin\EntityFramework.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\EntityFramework.SqlServer.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\Newtonsoft.Json.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Razor.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Webpages.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Webpages.Razor.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Helpers.xml
+C:\Users\Cooke\source\repos\breweries\breweries\bin\System.Web.Mvc.xml
+C:\Users\Cooke\source\repos\breweries\breweries\obj\Debug\breweries.csprojResolveAssemblyReference.cache
+C:\Users\Cooke\source\repos\breweries\breweries\obj\Debug\breweries.csproj.CoreCompileInputs.cache
+C:\Users\Cooke\source\repos\breweries\breweries\obj\Debug\breweries.dll
+C:\Users\Cooke\source\repos\breweries\breweries\obj\Debug\breweries.pdb
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\breweries.dll.config
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\breweries.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\breweries.pdb
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\EntityFramework.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\EntityFramework.SqlServer.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\Newtonsoft.Json.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Helpers.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Mvc.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Razor.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Webpages.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Webpages.Razor.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\EntityFramework.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\EntityFramework.SqlServer.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\Newtonsoft.Json.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Razor.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Webpages.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Webpages.Razor.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Helpers.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\bin\System.Web.Mvc.xml
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\obj\Debug\breweries.csproj.CoreCompileInputs.cache
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\obj\Debug\breweries.dll
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\obj\Debug\breweries.pdb
+C:\Users\Cooke\Desktop\PORTFOLIO 8-4-18\breweries\breweries\obj\Debug\breweries.csprojResolveAssemblyReference.cache

@@ -1,0 +1,23 @@
+﻿@model breweries.Models.Style
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="editHead">
+    <h4 class="edit-name">Delete - @Html.DisplayFor(model => model.Style1)</h4>
+</div>
+<hr />
+<h3 class="delete-sub-head">Are you sure you want to delete this?</h3>
+<h3 class="delete-sub-head">@Html.DisplayFor(model => model.Style1)</h3>
+<div>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

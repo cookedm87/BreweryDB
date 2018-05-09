@@ -1,0 +1,94 @@
+﻿@model IEnumerable<breweries.Models.beer>
+
+@{
+    ViewBag.Title = "Beers";
+}
+
+<div class="editHead">
+    <h4 class="edit-name">Beers</h4>
+</div>
+<p class="create">
+    @Html.ActionLink("Create New", "Create")
+</p>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Brewery: @Html.DropDownList("Brew", "All")
+            Style: @Html.DropDownList("Sty", "All")
+            <input type="submit" value="Filter" />
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Strength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Can)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bottle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Keg)
+            </th>
+            <th class="badgeLogoTitle">
+                @Html.DisplayNameFor(model => model.Badge)
+            </th>
+            <th>
+                @Html.DisplayName("Brewery")
+            </th>
+            <th>
+                @Html.DisplayName("Style")
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Strength)
+                </td>
+                <td>
+                    <label class="check-cont">
+                        @Html.DisplayFor(modelItem => item.Can)
+                        <span class="checkmark"></span>
+                    </label>
+                </td>
+                <td>
+                    <label class="check-cont">
+                        @Html.DisplayFor(modelItem => item.Bottle)
+                        <span class="checkmark"></span>
+                    </label>
+                </td>
+                <td>
+                    <label class="check-cont">
+                        @Html.DisplayFor(modelItem => item.Keg)
+                        <span class="checkmark"></span>
+                    </label>
+                </td>
+                <td>
+                    <img class="badgeLogo" src="@Html.Raw(item.Badge)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+                </td>
+                <td class="det-name">
+                    @Html.ActionLink(item.Brewery.Name, "Details", "Breweries", new { id = item.Brewery.Id }, null)
+                </td>
+                <td class="det-name">
+                    @Html.ActionLink(item.Style.Style1, "Details", "Styles", new { id = item.Style.Id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "table-links fa fa-edit" })
+                    @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "table-links fa fa-info" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "table-links fa fa-trash" })
+                </td>
+            </tr>
+        }
+    </table>

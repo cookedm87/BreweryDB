@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="breweriesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="beer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StyleId" Type="int" Nullable="false" />
+    <Property Name="BreweryId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="Strength" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="Can" Type="bit" Nullable="false" />
+    <Property Name="Bottle" Type="bit" Nullable="false" />
+    <Property Name="Keg" Type="bit" Nullable="false" />
+    <Property Name="Badge" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Brewery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="Location" Type="varchar(max)" />
+    <Property Name="Website" Type="varchar(max)" />
+    <Property Name="Logo" Type="varchar(max)" />
+    <Property Name="lat" Type="decimal" Precision="9" Scale="7" />
+    <Property Name="lon" Type="decimal" Precision="9" Scale="7" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Region" Type="varchar(max)" Nullable="false" />
+    <Property Name="RegionBrewWiki" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Style">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="Style" Type="varchar(max)" Nullable="false" />
+    <Property Name="Colour" Type="varchar(max)" />
+    <Property Name="lowABV" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="highABV" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="styleWiki" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_beer_Brewery">
+    <End Role="Brewery" Type="Self.Brewery" Multiplicity="1" />
+    <End Role="beer" Type="Self.beer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brewery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="beer">
+        <PropertyRef Name="BreweryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_beer_Style">
+    <End Role="Style" Type="Self.Style" Multiplicity="1" />
+    <End Role="beer" Type="Self.beer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Style">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="beer">
+        <PropertyRef Name="StyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Style_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Style" Type="Self.Style" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Style">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="breweriesModelStoreContainer">
+    <EntitySet Name="beer" EntityType="Self.beer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Brewery" EntityType="Self.Brewery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Style" EntityType="Self.Style" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_beer_Brewery" Association="Self.FK_beer_Brewery">
+      <End Role="Brewery" EntitySet="Brewery" />
+      <End Role="beer" EntitySet="beer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_beer_Style" Association="Self.FK_beer_Style">
+      <End Role="Style" EntitySet="Style" />
+      <End Role="beer" EntitySet="beer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Style_Country" Association="Self.FK_Style_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Style" EntitySet="Style" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,24 @@
+﻿@model breweries.Models.Brewery
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="editHead">
+    <h4 class="edit-name">Delete - @Html.DisplayFor(model => model.Name)</h4>
+</div>
+<hr/>
+<h3 class="delete-sub-head">Are you sure you want to delete this?</h3>
+<h3 class="delete-sub-head">@Html.DisplayFor(model => model.Name)</h3>
+<img class="mainLogo del-logo" src="@Html.Raw(Model.Logo)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+<div>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

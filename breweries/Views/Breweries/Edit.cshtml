@@ -1,0 +1,91 @@
+﻿@model breweries.Models.Brewery
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="editHead">
+    <h4 class="control-label col-md-2 edit-name">Edit - @Html.DisplayFor(model => model.Name)</h4>
+</div>
+<hr />
+<div class="edit-cont">
+    <div class="edit-form">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <div class="form-horizontal">
+
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Website, "Website (omit http://)", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Logo, "Logo (Image URL)", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <input type="submit" value="Save" class="btn btn-default" onmouseout="processPostcode()" />
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+    <img class="editLogo" src="@Html.Raw(Model.Logo)" alt="Badge" onerror="if(this.src != 'error.jpg') this.src ='https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/beer-mug_1f37a.png'" />
+</div>
+<script>
+
+    window.addEventListener('keydown', function (e) {
+        if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) {
+            if (e.target.nodeName == 'INPUT' && e.target.type == 'text') {
+                e.preventDefault(); return false;
+            }
+        }
+    }, true);
+
+
+    function processPostcode() {
+        var postcode = document.getElementById("address").value;
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': postcode }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+                document.getElementById('lat').value = latitude;
+                document.getElementById('lon').value = longitude;
+            }
+        });
+        return true;
+    }
+</script>
